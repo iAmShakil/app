@@ -1,62 +1,73 @@
 <template>
-  <form
-    class="login-form"
-    @submit.prevent="login">
+  <div class="login-form">
+    <form @submit.prevent="login">
+      <div v-if="apiUrls.length === 0">
+        <invisible-label html-for="url">{{ $t('api_url') }}</invisible-label>
+        <v-input
+          id="url"
+          v-model="url"
+          :placeholder="$t('api_url')"
+          icon-left="cloud"
+          type="url"
+          name="url"
+          class="input" />
+      </div>
 
-    <div v-if="apiUrls.length === 0">
-      <invisible-label html-for="url">{{ $t('api_url') }}</invisible-label>
+      <div>
+        <v-select
+          v-if="(apiUrls.length === 1 && allowOther === true) || apiUrls.length > 1"
+          id="url"
+          v-model="url"
+          :placeholder="$t('api_url')"
+          :other="allowOther"
+          :options="apiConfig"
+          :custom="allowOther"
+          icon="cloud"
+          class="input"
+          type="url" />
+      </div>
+
+      <invisible-label html-for="email">{{ $t('email_address') }}</invisible-label>
       <v-input
-        id="url"
-        v-model="url"
-        :placeholder="$t('api_url')"
-        icon-left="cloud"
-        type="url"
-        name="url"
-        class="input" />
-    </div>
-
-    <div>
-      <v-select
-        v-if="(apiUrls.length === 1 && allowOther === true) || apiUrls.length > 1"
-        id="url"
-        v-model="url"
-        :placeholder="$t('api_url')"
-        :other="allowOther"
-        :options="apiConfig"
-        :custom="allowOther"
-        icon="cloud"
+        id="email"
+        v-model="email"
+        :placeholder="$t('email')"
+        :disabled="exists !== true"
+        icon-left="person"
         class="input"
-        type="url" />
+        type="email"
+        name="email" />
+
+      <invisible-label html-for="password">{{ $t('password') }}</invisible-label>
+      <v-input
+        id="password"
+        v-model="password"
+        :placeholder="$t('password')"
+        :disabled="exists !== true"
+        icon-left="lock"
+        type="password"
+        name="password"
+        class="input" />
+
+      <v-button
+        :fullwidth="true"
+        :disabled="disabled"
+        :loading="loading"
+        type="submit">{{ $t('login') }}</v-button>
+    </form>
+    <div
+      v-if="exists && thirdPartyAuthProviders"
+      class="third-part-auth">
+      <a
+        v-for="provider in thirdPartyAuthProviders"
+        :key="provider.name"
+        :href="provider.authorization_url">
+        <img
+          :alt="provider.name"
+          :src="provider.icon">
+      </a>
     </div>
-
-    <invisible-label html-for="email">{{ $t('email_address') }}</invisible-label>
-    <v-input
-      id="email"
-      v-model="email"
-      :placeholder="$t('email')"
-      :disabled="exists !== true"
-      icon-left="person"
-      class="input"
-      type="email"
-      name="email" />
-
-    <invisible-label html-for="password">{{ $t('password') }}</invisible-label>
-    <v-input
-      id="password"
-      v-model="password"
-      :placeholder="$t('password')"
-      :disabled="exists !== true"
-      icon-left="lock"
-      type="password"
-      name="password"
-      class="input" />
-
-    <v-button
-      :fullwidth="true"
-      :disabled="disabled"
-      :loading="loading"
-      type="submit">{{ $t('login') }}</v-button>
-  </form>
+  </div>
 </template>
 
 <script>
