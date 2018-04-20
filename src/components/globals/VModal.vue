@@ -31,7 +31,9 @@
               <div class="body">
                 <slot />
               </div>
-              <div class="footer">
+              <div
+                v-if="!noFooter"
+                class="footer">
                 <slot name="footer">
                   <button
                     v-if="!actionRequired"
@@ -84,6 +86,10 @@ export default {
     okColor: {
       type: String,
       default: 'white',
+    },
+    noFooter: {
+      type: Boolean,
+      default: false,
     },
   },
   mounted() {
