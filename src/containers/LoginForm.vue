@@ -88,6 +88,9 @@ export default {
       this.loading = true;
       this.$store.dispatch('login', credentials)
         .then(() => {
+          this.$emit('login');
+        })
+        .then(() => {
           if (this.$route.params.redirect) {
             this.$router.push(this.$route.params.redirect);
           }
