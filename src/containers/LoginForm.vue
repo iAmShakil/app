@@ -165,6 +165,7 @@ export default {
     },
     getThirdPartyAuthProviders() {
       this.gettingThirdPartyAuthProviders = true;
+      this.thirdPartyAuthProviders = null;
 
       this.$api.getThirdPartyAuthProviders()
         .then(res => res.data)
