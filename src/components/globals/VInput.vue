@@ -9,6 +9,7 @@
     <input
       ref="input"
       :class="{charactercount}"
+      :disabled="disabled"
       :type="type"
       :autocomplete="autocomplete"
       :max="max"
@@ -88,6 +89,10 @@ export default {
       type: null,
       default: '',
     },
+    disabled: {
+      type: Boolean,
+      default: false,
+    },
 
     iconLeft: {
       type: String,
@@ -140,7 +145,7 @@ export default {
     padding: 10px;
     line-height: 1.5;
     transition: var(--fast) var(--transition);
-    transition-property: color, border-color, padding;
+    transition-property: color, border-color, padding, background-color;
     height: var(--input-height);
 
     &::placeholder {
@@ -169,6 +174,11 @@ export default {
       border: var(--input-border-width) solid var(--lighter-gray);
       background-color: var(--white);
       box-shadow: inset 0 0 0 2000px var(--white);
+    }
+
+    &[disabled] {
+      cursor: not-allowed;
+      background-color: var(--lightest-gray);
     }
   }
 
