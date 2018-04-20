@@ -5,7 +5,7 @@ export function latency({ commit }) { // eslint-disable-line
   const start = performance.now();
   const now = Date.now();
 
-  api.request('get', '/server/ping', {}, {}, true)
+  api.ping()
     .then(() => {
       const end = performance.now();
       const delta = end - start;
