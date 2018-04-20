@@ -1,9 +1,6 @@
 <template>
   <div class="login">
-    <login-form
-      :loading="loading"
-      class="form"
-      @submit="login" />
+    <login-form class="form" />
     <transition name="slide">
       <div
         v-if="error"
@@ -24,7 +21,7 @@
 
 <script>
 import { version } from '../../package.json';
-import LoginForm from '../components/LoginForm.vue';
+import LoginForm from '../containers/LoginForm.vue';
 
 export default {
   name: 'login',
@@ -51,26 +48,6 @@ export default {
     },
   },
   methods: {
-    login(credentials) {
-      this.loading = true;
-      this.$store.dispatch('login', credentials)
-        .then(() => {
-          if (this.$route.params.redirect) {
-            this.$router.push(this.$route.params.redirect);
-          }
-        })
-        .then(() => this.$api.getMe({ fields: 'last_page' }))
-        .then(res => res.data.last_page)
-        .then((lastPage) => {
-          this.loading = false;
-          this.$router.push(lastPage || '/');
-        })
-        .catch((err) => {
-          this.loading = false;
-          console.error(err); // eslint-disable-line no-console
-          this.$router.push('/');
-        });
-    },
     closeError() {
       this.$store.dispatch('removeAuthError');
     },

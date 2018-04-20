@@ -1,7 +1,7 @@
 <template>
   <form
     class="login-form"
-    @submit.prevent="submit">
+    @submit.prevent="login">
 
     <div v-if="apiUrls.length === 0">
       <invisible-label html-for="url">{{ $t('api_url') }}</invisible-label>
@@ -58,14 +58,9 @@
 <script>
 export default {
   name: 'login-form',
-  props: {
-    loading: {
-      type: Boolean,
-      default: false,
-    },
-  },
   data() {
     return {
+      loading: false,
       email: '',
       password: '',
       url: Object.keys(window.__DirectusConfig__.api)[0] || '', // eslint-disable-line
@@ -86,9 +81,28 @@ export default {
     },
   },
   methods: {
-    submit() {
+    login() {
       const { email, password, url } = this;
-      this.$emit('submit', { email, password, url });
+      const credentials = { email, password, url };
+
+      this.loading = true;
+      this.$store.dispatch('login', credentials)
+        .then(() => {
+          if (this.$route.params.redirect) {
+            this.$router.push(this.$route.params.redirect);
+          }
+        })
+        .then(() => this.$api.getMe({ fields: 'last_page' }))
+        .then(res => res.data.last_page)
+        .then((lastPage) => {
+          this.loading = false;
+          this.$router.push(lastPage || '/');
+        })
+        .catch((err) => {
+          this.loading = false;
+          console.error(err); // eslint-disable-line no-console
+          this.$router.push('/');
+        });
     },
   },
 };
