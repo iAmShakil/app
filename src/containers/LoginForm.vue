@@ -15,23 +15,26 @@
         class="input" />
     </div>
 
-    <v-select
-      v-if="(apiUrls.length === 1 && allowOther === true) || apiUrls.length > 1"
-      id="url"
-      v-model="url"
-      :placeholder="$t('api_url')"
-      :other="allowOther"
-      :options="apiConfig"
-      :custom="allowOther"
-      icon="cloud"
-      class="input"
-      type="url" />
+    <div>
+      <v-select
+        v-if="(apiUrls.length === 1 && allowOther === true) || apiUrls.length > 1"
+        id="url"
+        v-model="url"
+        :placeholder="$t('api_url')"
+        :other="allowOther"
+        :options="apiConfig"
+        :custom="allowOther"
+        icon="cloud"
+        class="input"
+        type="url" />
+    </div>
 
     <invisible-label html-for="email">{{ $t('email_address') }}</invisible-label>
     <v-input
       id="email"
       v-model="email"
       :placeholder="$t('email')"
+      :disabled="exists !== true"
       icon-left="person"
       class="input"
       type="email"
@@ -42,6 +45,7 @@
       id="password"
       v-model="password"
       :placeholder="$t('password')"
+      :disabled="exists !== true"
       icon-left="lock"
       type="password"
       name="password"
@@ -61,6 +65,11 @@ export default {
   data() {
     return {
       loading: false,
+      exists: null,
+      checkingExistence: false,
+      thirdPartyAuthProviders: null,
+      gettingThirdPartyAuthProviders: false,
+
       email: '',
       password: '',
       url: Object.keys(window.__DirectusConfig__.api)[0] || '', // eslint-disable-line
@@ -79,6 +88,24 @@ export default {
     allowOther() {
       return window.__DirectusConfig__.allowOtherAPI; // eslint-disable-line
     },
+  },
+  watch: {
+    url() {
+      this.exists = null;
+      this.checkUrl();
+    },
+    exists(newVal, oldVal) {
+      if (newVal === true && newVal !== oldVal) {
+        this.getThirdPartyAuthProviders();
+      }
+    },
+  },
+  created() {
+    this.checkUrl = this.$lodash.debounce(this.checkUrl, 300);
+
+    if (this.url) {
+      this.checkUrl();
+    }
   },
   methods: {
     login() {
@@ -105,6 +132,37 @@ export default {
           this.loading = false;
           console.error(err); // eslint-disable-line no-console
           this.$router.push('/');
+        });
+    },
+    checkUrl() {
+      if (!this.url) return;
+
+      this.checkingExistence = true;
+
+      this.$api.url = this.url;
+      this.$api.ping()
+        .then(() => {
+          this.exists = true;
+        })
+        .catch(() => {
+          this.exists = false;
+        })
+        .finally(() => {
+          this.$api.url = null;
+          this.checkingExistence = false;
+        });
+    },
+    getThirdPartyAuthProviders() {
+      this.gettingThirdPartyAuthProviders = true;
+
+      this.$api.getThirdPartyAuthProviders()
+        .then(res => res.data)
+        .then((thirdPartyAuthProviders) => {
+          this.thirdPartyAuthProviders = thirdPartyAuthProviders;
+        })
+        .catch(console.error)
+        .finally(() => {
+          this.gettingThirdPartyAuthProviders = false;
         });
     },
   },
