@@ -161,6 +161,7 @@ export default {
     height: 100%;
     opacity: 0;
     cursor: pointer;
+    z-index: +1;
   }
 
   .value, input {
@@ -172,7 +173,6 @@ export default {
   }
 
   .value {
-    z-index: -1;
     width: 100%;
     display: flex;
     align-items: center;
