@@ -6,7 +6,7 @@
         :title="$t('change_project')"
         no-footer
         @close="projectSwitcherActive = false">
-        <login-form />
+        <login-form @login="projectSwitcherActive = false"/>
       </v-modal>
 
       <v-modal
