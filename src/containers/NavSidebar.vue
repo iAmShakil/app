@@ -4,8 +4,9 @@
       <v-modal
         v-if="projectSwitcherActive"
         :title="$t('change_project')"
+        no-footer
         @close="projectSwitcherActive = false">
-        Project changer form
+        <login-form />
       </v-modal>
 
       <v-modal
@@ -150,11 +151,12 @@
 import FocusLock from 'vue-focus-lock';
 import VSignal from '../components/VSignal.vue';
 import createGravatarLink from '../helpers/gravatar';
+import LoginForm from '../containers/LoginForm.vue';
 
 export default {
   name: 'nav-sidebar',
   components: {
-    FocusLock, VSignal,
+    FocusLock, VSignal, LoginForm,
   },
   props: {
     active: {
