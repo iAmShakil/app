@@ -20,7 +20,7 @@
     <v-header-bar :breadcrumb="breadcrumb" info-toggle>
       <template slot="buttons">
         <v-header-button
-          v-if="!newItem"
+          v-if="!newItem && !singleItem"
           icon="close"
           color="danger"
           :label="$t('delete')"
@@ -184,7 +184,9 @@ export default {
       confirmRemoveLoading: false,
 
       confirmNavigation: false,
-      leavingTo: ""
+      leavingTo: "",
+
+      collectionInfo: null
     };
   },
   computed: {
@@ -236,6 +238,9 @@ export default {
     },
     newItem() {
       return this.primaryKey === "+";
+    },
+    singleItem() {
+      return this.collectionInfo && this.collectionInfo.single === true;
     },
     primaryKeyField() {
       return this.$lodash.find(this.fields, { interface: "primary-key" }).field;
@@ -339,7 +344,7 @@ export default {
     return hydrate(collection, primaryKey)
       .then(data => {
         next(vm => {
-          Object.assign(vm.$data, data);
+          Object.assign(vm.$data, data, { collectionInfo });
         });
       })
       .catch(error => {
@@ -360,6 +365,7 @@ export default {
     return hydrate(collection, primaryKey)
       .then(data => {
         this.fields = data.fields;
+        this.collectionInfo = collectionInfo;
         next();
       })
       .catch(error => {
