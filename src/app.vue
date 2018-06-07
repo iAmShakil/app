@@ -3,12 +3,13 @@
     v-if="publicRoute"
     class="directus" />
 
-  <div v-else-if="hydratingError">
+  <div v-else-if="hydratingError" class="error">
     <v-error
       icon="warning"
       :title="$t('server_error')"
       :body="$t('server_error_copy')"
       color="danger" />
+    <p>Try again later or <router-link to="/logout">login to another instance</router-link>.</p>
   </div>
 
   <div
@@ -105,5 +106,17 @@ export default {
 <style>
 body.no-padding {
   padding: 0 !important;
+}
+
+.error {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 </style>
