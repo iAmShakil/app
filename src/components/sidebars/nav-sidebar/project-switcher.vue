@@ -4,7 +4,7 @@
       <v-modal
         :title="$t('change_project')"
         @close="active = false">
-        <login-form />
+        <login-form class="form" />
       </v-modal>
     </portal>
     <button
@@ -65,5 +65,9 @@ export default {
   margin-right: 10px;
   color: var(--light-gray);
   fill: var(--light-gray);
+}
+
+.form {
+  margin: 20px auto;
 }
 </style>

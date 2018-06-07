@@ -289,6 +289,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.login-form {
+  max-width: 260px;
+}
+
 .input {
   margin-bottom: 13px;
 }
