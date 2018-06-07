@@ -20,8 +20,10 @@ import NProgress from "nprogress";
 
 Vue.use(Router);
 
+const { routerMode } = window.__DirectusConfig__;
+
 const router = new Router({
-  mode: "history",
+  mode: routerMode || "history",
   routes: [
     {
       path: "/modals",

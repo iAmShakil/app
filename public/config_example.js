@@ -5,7 +5,8 @@
     api: {
       'https://demo-api.getdirectus.com': 'Directus Demo API'
     },
-    allowOtherAPI: false
+    allowOtherAPI: false,
+    routerMode: "history" // or "hash"
   };
 
   window.__DirectusConfig__ = config;
