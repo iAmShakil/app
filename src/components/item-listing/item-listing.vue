@@ -1,6 +1,13 @@
 <template>
   <v-error
-    v-if="items.fields && Object.keys(items.fields).length === 0"
+    v-if="items.error || fields.error"
+    icon="warning"
+    :color="danger"
+    :title="$t('server_error')"
+    :body="$t('server_error_copy')" />
+
+  <v-error
+    v-else-if="items.fields && Object.keys(items.fields).length === 0"
     icon="build"
     :title="$t('no_fields')"
     :body="$t('no_fields_body')" />
