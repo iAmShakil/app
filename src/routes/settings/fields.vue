@@ -20,7 +20,13 @@
       </template>
     </v-header-bar>
 
-    <h2 class="style-1">{{ $tc("collection_contains_items", count, { collection: $helpers.formatTitle(collection), count: count === "--" ? "--" : $n(count) })}}</h2>
+    <h2 class="style-1">Collection</h2>
+    <v-input
+        id="collection-name"
+        :placeholder="collection"
+        :disabled="true"
+        type="text"
+        class="normal" />
     <em>Collection names cannot be edited at this time.</em>
 
     <h2 class="style-1">Fields</h2>
