@@ -108,6 +108,7 @@ export default {
   fields_are_saved_automatically: "Field settings are saved automatically",
   file: "File",
   file_library: "File Library",
+  file_upload: "Upload File(s)",
   forgot_password: "Forgot Password",
   greater_than_equal: "Greater than or equal to",
   greater_than: "Greater than",

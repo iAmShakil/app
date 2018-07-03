@@ -41,6 +41,8 @@ import VInfoSidebar from "./components/sidebars/info-sidebar.vue";
 
 import VError from "./components/error.vue";
 
+import VFileUpload from "./components/file-upload.vue";
+
 // Extensions
 Vue.component("v-interface", VInterface);
 Vue.component("v-readonly", VReadonly);
@@ -73,6 +75,8 @@ Vue.component("v-header-button", VHeaderButton);
 Vue.component("v-info-sidebar", VInfoSidebar);
 
 Vue.component("v-error", VError);
+
+Vue.component("v-file-upload", VFileUpload);
 
 Vue.component("invisible-label", InvisibleLabel);
 Vue.component("loader", Loader);
