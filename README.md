@@ -6,6 +6,7 @@
 
 _The Directus 7 App has been rebuilt from the ground-up in Vue.js and decoupled from our new "versionless" API._
 
+* [Learn more on our website](https://directus.io)
 * [Live Demo: Stable](https://directus.app) [![Build Status](https://semaphoreci.com/api/v1/directus/app/branches/build/badge.svg)](https://semaphoreci.com/directus/app)
 * [Live Demo: Canary](https://next.directus.app) [![Build Status](https://semaphoreci.com/api/v1/directus/next/branches/master/badge.svg)](https://semaphoreci.com/directus/next)
 
@@ -22,7 +23,13 @@ Directus is a GPLv3-licensed open source project with development made possible 
 
 ## Introduction
 
-Directus is an open-source suite of software for managing content in projects of any size. Instances of the [Directus API](https://github.com/directus/api) allow you to easily connect pure database content to: websites, native apps, wearables, IoT devices, digital signage, kiosks, etc – while the [Directus App](https://github.com/directus/app) allows non-technical users to manage content. 
+Directus is a feature-rich suite of software for managing content in projects of any size. Instances of the [Directus API](https://github.com/directus/api) allow you to easily connect pure database content to: websites, native apps, wearables, IoT devices, digital signage, kiosks, etc – while the [Directus App](https://github.com/directus/app) allows non-technical users to manage content. 
+
+### No Assumptions
+
+### Transparent
+
+### Internationalization
 
 ## Documentation
 
@@ -45,13 +52,11 @@ Directus is an open-source suite of software for managing content in projects of
 
 ## Support & Resources
 
-### Technical Support
-
-#### Open-Source
+### Open-Source Support
 
 For help with open-source instances please post questions with the `directus` tag on [Stack Overflow](https://stackoverflow.com/questions/tagged/directus).
 
-#### Premium
+### Premium Support
 
 [Premium Support](https://directus.io) is only available to Directus Cloud customers, Patreon Sponsors, and Contracted Clients.
 
