@@ -7,8 +7,10 @@
 _The Directus 7 App has been rebuilt from the ground-up in Vue.js and decoupled from our new "versionless" API._
 
 * [Learn more on our website](https://directus.io)
-* [Live Demo: Stable](https://directus.app) [![Build Status](https://semaphoreci.com/api/v1/directus/app/branches/build/badge.svg)](https://semaphoreci.com/directus/app)
-* [Live Demo: Canary](https://next.directus.app) [![Build Status](https://semaphoreci.com/api/v1/directus/next/branches/master/badge.svg)](https://semaphoreci.com/directus/next)
+* [Live Demo: Stable](https://directus.app)
+  * [![Build Status](https://semaphoreci.com/api/v1/directus/app/branches/build/badge.svg)](https://semaphoreci.com/directus/app)
+* [Live Demo: Canary](https://next.directus.app)
+  * [![Build Status](https://semaphoreci.com/api/v1/directus/next/branches/master/badge.svg)](https://semaphoreci.com/directus/next)
 
 ## Supporting Directus
 
