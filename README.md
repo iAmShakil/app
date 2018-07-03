@@ -2,10 +2,9 @@
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 
-# The All-New Directus 7
-# Future-Proof Headless CMS
+# The All-New Directus 7<br>Future-Proof Headless CMS
 
-_We've completely rebuilt the Directus 7 App from the ground-up in Vue.js and decoupled it from our new "versionless" API._
+_The Directus 7 App has been rebuilt from the ground-up in Vue.js and decoupled from our new "versionless" API._
 
 * [Live Demo: Stable](https://directus.app) [![Build Status](https://semaphoreci.com/api/v1/directus/app/branches/build/badge.svg)](https://semaphoreci.com/directus/app)
 * [Live Demo: Canary](https://next.directus.app) [![Build Status](https://semaphoreci.com/api/v1/directus/next/branches/master/badge.svg)](https://semaphoreci.com/directus/next)
