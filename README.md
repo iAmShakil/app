@@ -79,7 +79,7 @@ Follow us on [Twitter](https://twitter.com/directus) to be the first to hear abo
 
 Use our [Feature Request Tool](https://request.getdirectus.com/) to request new features or vote on existing community suggestions.
 
-## Contributing
+### Contributing
 
 We love pull-requests! If you would like to contribute to Directus please submit pull-requests to the `development` branch.
 
