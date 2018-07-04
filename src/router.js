@@ -7,6 +7,7 @@ import EventBus from "./events/";
 import hydrateStore from "./hydrate";
 import Collections from "./routes/collections.vue";
 import ItemListing from "./routes/item-listing.vue";
+import FileLibrary from "./routes/file-library.vue";
 import Edit from "./routes/edit.vue";
 import Login from "./routes/login.vue";
 import NotFound from "./routes/not-found.vue";
@@ -108,8 +109,11 @@ const router = new Router({
     },
     {
       path: "/collections/directus_files",
-      component: ItemListing,
-      alias: "/files"
+      redirect: "/files"
+    },
+    {
+      path: "/files",
+      component: FileLibrary
     },
     {
       path: "/collections/directus_files/:primaryKey",
